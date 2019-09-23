@@ -1,6 +1,8 @@
 const Hapi = require("hapi");
 const good = require('good');
 
+const routes = {}
+routes.todo = require('./routes/todo')
 const server = new Hapi.Server()
 server.connection({
     host:'localhost',
@@ -12,6 +14,8 @@ server.route({
     path: "/",
     handler: (request, reply) => reply({ message: 'Are you happy!'})
 });
+
+server.route(routes.todo)
 
 const options = {
     ops: {
